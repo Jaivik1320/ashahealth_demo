@@ -1,0 +1,1826 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Asha Health</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg: #f5f7fa;
+  --bg2: #ffffff;
+  --bg3: #eef1f6;
+  --fg: #111827;
+  --fg2: #4b5563;
+  --fg3: #9ca3af;
+  --accent: #2563eb;
+  --accent2: #1d4ed8;
+  --accent-soft: rgba(37,99,235,.1);
+  --teal: #0d9488;
+  --teal-soft: rgba(13,148,136,.12);
+  --violet: #7c3aed;
+  --violet-soft: rgba(124,58,237,.1);
+  --green: #16a34a;
+  --green-soft: rgba(22,163,74,.12);
+  --amber: #d97706;
+  --amber-soft: rgba(217,119,6,.12);
+  --red: #dc2626;
+  --red-soft: rgba(220,38,38,.1);
+  --border: rgba(0,0,0,.08);
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #06080f;
+    --bg2: #0d1117;
+    --bg3: #161b27;
+    --fg: #e8eaf0;
+    --fg2: #9ba3b2;
+    --fg3: #4a5568;
+    --accent: #5b8ef8;
+    --accent2: #3b6df5;
+    --accent-soft: rgba(91,142,248,.12);
+    --teal: #2dd4bf;
+    --teal-soft: rgba(45,212,191,.1);
+    --violet: #a78bfa;
+    --violet-soft: rgba(167,139,250,.1);
+    --green: #4ade80;
+    --green-soft: rgba(74,222,128,.1);
+    --amber: #fbbf24;
+    --amber-soft: rgba(251,191,36,.1);
+    --red: #f87171;
+    --red-soft: rgba(248,113,113,.1);
+    --border: rgba(255,255,255,.07);
+    --shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #06080f;
+  --bg2: #0d1117;
+  --bg3: #161b27;
+  --fg: #e8eaf0;
+  --fg2: #9ba3b2;
+  --fg3: #4a5568;
+  --accent: #5b8ef8;
+  --accent2: #3b6df5;
+  --accent-soft: rgba(91,142,248,.12);
+  --teal: #2dd4bf;
+  --teal-soft: rgba(45,212,191,.1);
+  --violet: #a78bfa;
+  --violet-soft: rgba(167,139,250,.1);
+  --green: #4ade80;
+  --green-soft: rgba(74,222,128,.1);
+  --amber: #fbbf24;
+  --amber-soft: rgba(251,191,36,.1);
+  --red: #f87171;
+  --red-soft: rgba(248,113,113,.1);
+  --border: rgba(255,255,255,.07);
+  --shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ===== SHELL ===== */
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* ===== TOP BAR ===== */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.3px;
+}
+.topbar-logo-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(37,99,235,.3);
+}
+.topbar-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 5px;
+  padding: 2px 7px;
+}
+.topbar-spacer { flex: 1; }
+.topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--green);
+  font-weight: 500;
+}
+.dot-live {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(1.3)}
+}
+.topbar-time {
+  font-size: 12px;
+  color: var(--fg3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ===== NAV ===== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 16px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg2);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.nav-btn:hover { color: var(--fg); }
+.nav-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+.nav-icon { font-size: 14px; }
+.nav-count {
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--red);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 5px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* ===== PANELS ===== */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ===== GRID UTILS ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media(max-width:900px){ .grid-4{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:1fr 1fr} }
+@media(max-width:600px){ .grid-4,.grid-3,.grid-2{grid-template-columns:1fr} }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.card-title-icon { font-size: 15px; }
+
+/* ===== STAT TILES ===== */
+.stat-tile {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  margin-bottom: 8px;
+}
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.stat-sub {
+  font-size: 12px;
+  color: var(--fg2);
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.stat-up { color: var(--green); }
+.stat-down { color: var(--red); }
+
+/* ===== BADGES ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 2px 8px;
+}
+.badge-green { background: var(--green-soft); color: var(--green); }
+.badge-amber { background: var(--amber-soft); color: var(--amber); }
+.badge-red { background: var(--red-soft); color: var(--red); }
+.badge-blue { background: var(--accent-soft); color: var(--accent); }
+.badge-teal { background: var(--teal-soft); color: var(--teal); }
+.badge-violet { background: var(--violet-soft); color: var(--violet); }
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-top { margin-bottom: 20px; }
+
+/* ===== PATIENT ROW ===== */
+.patient-list { display: flex; flex-direction: column; gap: 8px; }
+.patient-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background .12s, box-shadow .12s;
+}
+.patient-row:hover { background: var(--bg3); box-shadow: var(--shadow); }
+.patient-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.av-blue { background: var(--accent-soft); color: var(--accent); }
+.av-teal { background: var(--teal-soft); color: var(--teal); }
+.av-violet { background: var(--violet-soft); color: var(--violet); }
+.av-amber { background: var(--amber-soft); color: var(--amber); }
+.av-green { background: var(--green-soft); color: var(--green); }
+.patient-info { flex: 1; min-width: 0; }
+.patient-name { font-size: 13px; font-weight: 600; color: var(--fg); }
+.patient-meta { font-size: 11px; color: var(--fg3); margin-top: 1px; }
+.patient-ai {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.patient-row-actions { display: flex; gap: 6px; align-items: center; }
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity .12s, transform .08s;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { opacity: .88; }
+.btn-ghost {
+  background: var(--bg3);
+  color: var(--fg2);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { color: var(--fg); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { opacity: .88; }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+.btn-xs { padding: 3px 8px; font-size: 11px; border-radius: 5px; }
+
+/* ===== PROGRESS BAR ===== */
+.prog-bar {
+  height: 5px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.prog-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .6s cubic-bezier(.4,0,.2,1);
+}
+.prog-blue { background: var(--accent); }
+.prog-green { background: var(--green); }
+.prog-amber { background: var(--amber); }
+.prog-teal { background: var(--teal); }
+
+/* ===== EVENT FEED ===== */
+.feed { display: flex; flex-direction: column; gap: 0; }
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.feed-item:last-child { border-bottom: none; }
+.feed-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.feed-blue { background: var(--accent); }
+.feed-green { background: var(--green); }
+.feed-amber { background: var(--amber); }
+.feed-teal { background: var(--teal); }
+.feed-violet { background: var(--violet); }
+.feed-red { background: var(--red); }
+.feed-text { color: var(--fg2); flex: 1; }
+.feed-text strong { color: var(--fg); font-weight: 600; }
+.feed-ts { color: var(--fg3); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+
+/* ===== SPARKLINE ===== */
+.sparkline-wrap { overflow: hidden; }
+
+/* ===== CALL PANEL ===== */
+.call-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: var(--shadow-lg);
+}
+.call-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.call-avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--teal-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+.call-info { flex: 1; }
+.call-name { font-weight: 700; font-size: 16px; }
+.call-status-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--fg2);
+  margin-top: 2px;
+}
+.call-waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 32px;
+}
+.call-bar {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--teal);
+  animation: waveform .8s ease infinite;
+}
+.call-bar:nth-child(1){ animation-delay: 0s; }
+.call-bar:nth-child(2){ animation-delay: .1s; }
+.call-bar:nth-child(3){ animation-delay: .2s; }
+.call-bar:nth-child(4){ animation-delay: .3s; }
+.call-bar:nth-child(5){ animation-delay: .4s; }
+.call-bar:nth-child(6){ animation-delay: .3s; }
+.call-bar:nth-child(7){ animation-delay: .2s; }
+.call-bar:nth-child(8){ animation-delay: .1s; }
+@keyframes waveform {
+  0%,100%{ height: 8px; opacity: .4; }
+  50%{ height: 28px; opacity: 1; }
+}
+.call-transcript {
+  background: var(--bg3);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--fg2);
+  line-height: 1.6;
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: 12px;
+}
+.call-turn { margin-bottom: 8px; }
+.call-turn-label { font-weight: 700; font-size: 11px; letter-spacing: .05em; margin-bottom: 2px; }
+.call-turn-ai { color: var(--teal); }
+.call-turn-pt { color: var(--accent); }
+.call-turn-text { color: var(--fg2); }
+
+/* ===== AGENT CARDS ===== */
+.agent-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.agent-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.agent-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.agent-name { font-weight: 700; font-size: 13px; }
+.agent-desc { font-size: 11px; color: var(--fg3); margin-top: 1px; }
+.agent-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.agent-metric-label { color: var(--fg3); }
+.agent-metric-val { font-weight: 600; font-family: 'JetBrains Mono', monospace; color: var(--fg); }
+
+/* ===== TRACE ===== */
+.trace-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.trace-row:last-child { border-bottom: none; }
+.trace-name { flex: 1; font-weight: 500; color: var(--fg); }
+.trace-bar-wrap { width: 120px; display: flex; align-items: center; gap: 6px; }
+.trace-bar-bg { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.trace-bar-fill { height: 100%; border-radius: 3px; }
+.trace-dur { color: var(--fg3); font-family: 'JetBrains Mono', monospace; font-size: 11px; min-width: 42px; text-align: right; }
+.trace-status { font-size: 10px; font-weight: 700; border-radius: 4px; padding: 2px 6px; }
+.trace-ok { background: var(--green-soft); color: var(--green); }
+.trace-warn { background: var(--amber-soft); color: var(--amber); }
+
+/* ===== CLINICAL TOOL ===== */
+.clinical-query {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.clinical-query textarea {
+  flex: 1;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--fg);
+  resize: none;
+  font-family: 'Inter', sans-serif;
+  min-height: 60px;
+}
+.clinical-query textarea::placeholder { color: var(--fg3); }
+.clinical-query textarea:focus { outline: none; border-color: var(--accent); }
+.clinical-result {
+  background: var(--bg3);
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.65;
+  min-height: 80px;
+  border-left: 3px solid var(--accent);
+}
+.clinical-result strong { color: var(--fg); }
+.typing-cursor {
+  display: inline-block;
+  width: 2px; height: 14px;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ===== RELIABILITY METRICS ===== */
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-label { flex: 1; font-size: 13px; font-weight: 500; color: var(--fg); }
+.metric-bar { flex: 1; }
+.metric-value { font-size: 13px; font-family: 'JetBrains Mono', monospace; font-weight: 600; min-width: 50px; text-align: right; }
+
+/* ===== INTAKE FORM ===== */
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--fg2); margin-bottom: 5px; letter-spacing: .04em; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--fg);
+  font-family: 'Inter', sans-serif;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.form-textarea { resize: vertical; min-height: 70px; }
+.form-select option { background: var(--bg2); }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  box-shadow: var(--shadow-lg);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-icon { font-size: 16px; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.modal-overlay.show { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(16px);
+  transition: transform .2s;
+}
+.modal-overlay.show .modal { transform: translateY(0); }
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.modal-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; }
+.modal-close { background: none; border: none; cursor: pointer; color: var(--fg3); font-size: 18px; padding: 2px; }
+.modal-close:hover { color: var(--fg); }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .content { padding: 14px; }
+  .topbar { padding: 0 14px; }
+  .nav { padding: 0 8px; }
+  .nav-btn { padding: 10px 10px; font-size: 12px; }
+}
+</style>
+
+<div class="shell">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-logo">
+      <div class="topbar-logo-mark">A</div>
+      Asha Health
+    </div>
+    <span class="topbar-badge">AI OS</span>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-status"><div class="dot-live"></div>All Systems Operational</div>
+    <div class="topbar-time" id="clock">--:--:--</div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <button class="nav-btn active" onclick="go('queue',this)"><span class="nav-icon">🏥</span>Patient Queue<span class="nav-count" id="q-count">7</span></button>
+    <button class="nav-btn" onclick="go('care',this)"><span class="nav-icon">🤝</span>Care Coordination</button>
+    <button class="nav-btn" onclick="go('voice',this)"><span class="nav-icon">📞</span>Voice Agent</button>
+    <button class="nav-btn" onclick="go('clinical',this)"><span class="nav-icon">🧠</span>Clinical AI</button>
+    <button class="nav-btn" onclick="go('reliability',this)"><span class="nav-icon">📊</span>Reliability</button>
+    <button class="nav-btn" onclick="go('intake',this)"><span class="nav-icon">📋</span>Intake</button>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ===== QUEUE PANEL ===== -->
+    <div class="panel active" id="panel-queue">
+      <div class="panel-top">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div class="section-title">🏥 Patient Queue — Outpatient Clinic</div>
+          <button class="btn btn-primary btn-sm" onclick="addPatient()">+ Admit Patient</button>
+        </div>
+      </div>
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="stat-tile">
+          <div class="stat-label">Waiting</div>
+          <div class="stat-value" id="stat-wait">7</div>
+          <div class="stat-sub"><span class="stat-down">↑ 2</span> from 1h ago</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">AI Triaged</div>
+          <div class="stat-value" id="stat-triaged">5</div>
+          <div class="stat-sub"><span class="stat-up">71%</span> auto-routed</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Avg Wait</div>
+          <div class="stat-value" id="stat-avgwait">12<span style="font-size:16px">m</span></div>
+          <div class="stat-sub"><span class="stat-up">↓ 4m</span> vs yesterday</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Completed Today</div>
+          <div class="stat-value" id="stat-done">34</div>
+          <div class="stat-sub"><span class="stat-up">↑ 8%</span> vs last week</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">🤖</span>AI Triage Queue</div>
+            <span class="badge badge-blue">Live</span>
+          </div>
+          <div class="patient-list" id="patient-list">
+            <!-- filled by JS -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">⚡</span>Live Events</div>
+          </div>
+          <div class="feed" id="queue-feed"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="card-title-icon">📈</span>AI Agent Activity — Last 60 min</div>
+        </div>
+        <canvas id="activity-chart" height="90"></canvas>
+      </div>
+    </div>
+
+    <!-- ===== CARE PANEL ===== -->
+    <div class="panel" id="panel-care">
+      <div class="panel-top">
+        <div class="section-title">🤝 Care Coordination — Active Tasks</div>
+      </div>
+      <div class="grid-3" style="margin-bottom:20px">
+        <div class="stat-tile">
+          <div class="stat-label">Open Tasks</div>
+          <div class="stat-value">18</div>
+          <div class="stat-sub">across 12 patients</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">AI Resolved Today</div>
+          <div class="stat-value">41</div>
+          <div class="stat-sub"><span class="stat-up">↑ 12</span> vs yesterday</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Escalated</div>
+          <div class="stat-value">3</div>
+          <div class="stat-sub">need human review</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">📋</span>Task Board</div>
+            <button class="btn btn-primary btn-xs" onclick="addTask()">+ New Task</button>
+          </div>
+          <div id="task-board" style="display:flex;flex-direction:column;gap:8px"><!-- filled by JS --></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">🤖</span>Agent Orchestration</div>
+          </div>
+          <div id="agent-flow" style="display:flex;flex-direction:column;gap:10px"><!-- filled by JS --></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== VOICE PANEL ===== -->
+    <div class="panel" id="panel-voice">
+      <div class="panel-top">
+        <div class="section-title">📞 Voice Agent — Live Call Simulation</div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="call-box" style="margin-bottom:16px">
+            <div class="call-header">
+              <div class="call-avatar">👤</div>
+              <div class="call-info">
+                <div class="call-name" id="call-patient-name">Maria Santos</div>
+                <div class="call-status-line">
+                  <div class="dot-live"></div>
+                  <span id="call-state-txt">Outbound — Post-visit follow-up</span>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-teal btn-sm" id="call-btn" onclick="toggleCall()">▶ Start Call</button>
+              </div>
+            </div>
+            <div class="call-waveform" id="call-waveform" style="justify-content:center;opacity:.3">
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+              <div class="call-bar" style="height:8px"></div>
+            </div>
+            <div class="call-transcript" id="call-transcript">
+              <div style="text-align:center;color:var(--fg3);padding:20px 0;font-size:12px">Start the call to see live transcript</div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <select class="form-select" id="call-type-sel" style="flex:1;font-size:12px">
+                <option>Post-visit follow-up</option>
+                <option>Medication adherence check</option>
+                <option>Lab result notification</option>
+                <option>Appointment reminder</option>
+              </select>
+              <button class="btn btn-ghost btn-sm" onclick="resetCall()">↺ Reset</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">📊</span>Call Analytics</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px" id="call-stats">
+              <div class="metric-row"><div class="metric-label">Call duration</div><div class="metric-value" id="call-dur-val" style="color:var(--teal)">0:00</div></div>
+              <div class="metric-row"><div class="metric-label">Sentiment</div><div class="metric-value" id="call-sentiment" style="color:var(--green)">—</div></div>
+              <div class="metric-row"><div class="metric-label">AI response latency</div><div class="metric-value" style="color:var(--accent)">340ms</div></div>
+              <div class="metric-row"><div class="metric-label">Confidence score</div><div class="metric-value" style="color:var(--violet)">0.94</div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">📋</span>Scheduled Calls Today</div>
+              <span class="badge badge-blue">12 pending</span>
+            </div>
+            <div class="patient-list">
+              <div class="patient-row" onclick="pickCall('Maria Santos','Post-visit follow-up')">
+                <div class="patient-avatar av-teal">MS</div>
+                <div class="patient-info">
+                  <div class="patient-name">Maria Santos</div>
+                  <div class="patient-meta">Post-visit · 2:00 PM</div>
+                </div>
+                <span class="badge badge-teal">Scheduled</span>
+              </div>
+              <div class="patient-row" onclick="pickCall('David Kim','Medication adherence check')">
+                <div class="patient-avatar av-blue">DK</div>
+                <div class="patient-info">
+                  <div class="patient-name">David Kim</div>
+                  <div class="patient-meta">Med check · 2:30 PM</div>
+                </div>
+                <span class="badge badge-blue">Scheduled</span>
+              </div>
+              <div class="patient-row" onclick="pickCall('Priya Patel','Lab result notification')">
+                <div class="patient-avatar av-violet">PP</div>
+                <div class="patient-info">
+                  <div class="patient-name">Priya Patel</div>
+                  <div class="patient-meta">Lab results · 3:00 PM</div>
+                </div>
+                <span class="badge badge-amber">Urgent</span>
+              </div>
+              <div class="patient-row" onclick="pickCall('Robert Chen','Appointment reminder')">
+                <div class="patient-avatar av-green">RC</div>
+                <div class="patient-info">
+                  <div class="patient-name">Robert Chen</div>
+                  <div class="patient-meta">Appt reminder · 3:30 PM</div>
+                </div>
+                <span class="badge badge-green">Done</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">⚡</span>Voice Feed</div>
+            </div>
+            <div class="feed" id="voice-feed"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CLINICAL PANEL ===== -->
+    <div class="panel" id="panel-clinical">
+      <div class="panel-top">
+        <div class="section-title">🧠 Clinical AI Tools</div>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">💬</span>Clinical Query Engine</div>
+            <span class="badge badge-violet">GPT-4o + RAG</span>
+          </div>
+          <div class="clinical-query">
+            <textarea id="clinical-input" placeholder="Ask a clinical question... e.g. 'What are the contraindications for metformin in a patient with eGFR 42?'" rows="3"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" onclick="runClinicalQuery()">Ask AI</button>
+            <button class="btn btn-ghost btn-sm" onclick="setClinicalQ('What are contraindications for metformin with eGFR 42?')">Sample 1</button>
+            <button class="btn btn-ghost btn-sm" onclick="setClinicalQ('Differential diagnosis for new-onset dyspnea in 68yo with HTN and DM')">Sample 2</button>
+            <button class="btn btn-ghost btn-sm" onclick="setClinicalQ('Adjust lisinopril dose: patient creatinine rose from 1.1 to 1.6 over 3 months')">Sample 3</button>
+          </div>
+          <div class="clinical-result" id="clinical-result">
+            <span style="color:var(--fg3)">Response will appear here...</span>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:10px;font-size:11px;color:var(--fg3)">
+            <span id="clinical-latency"></span>
+            <span id="clinical-tokens"></span>
+            <span id="clinical-source"></span>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">🤖</span>Active AI Agents</div>
+            </div>
+            <div id="agents-grid" style="display:flex;flex-direction:column;gap:10px"><!-- filled by JS --></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">🔍</span>Recent Queries</div>
+            </div>
+            <div class="feed" id="clinical-feed"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RELIABILITY PANEL ===== -->
+    <div class="panel" id="panel-reliability">
+      <div class="panel-top">
+        <div class="section-title">📊 Reliability & Latency Dashboard</div>
+      </div>
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="stat-tile">
+          <div class="stat-label">Uptime (30d)</div>
+          <div class="stat-value" style="color:var(--green)">99.98<span style="font-size:16px">%</span></div>
+          <div class="stat-sub"><span class="stat-up">SLA: 99.9%</span> exceeded</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">P50 Latency</div>
+          <div class="stat-value" id="p50-val">210<span style="font-size:16px">ms</span></div>
+          <div class="stat-sub">agent response</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">P99 Latency</div>
+          <div class="stat-value" id="p99-val">880<span style="font-size:16px">ms</span></div>
+          <div class="stat-sub">agent response</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Accuracy Score</div>
+          <div class="stat-value" style="color:var(--accent)">96.4<span style="font-size:16px">%</span></div>
+          <div class="stat-sub">clinical eval suite</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">⏱</span>Agent Latency Breakdown</div>
+          </div>
+          <div id="trace-list"><!-- filled by JS --></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">📈</span>Requests / min</div>
+          </div>
+          <canvas id="latency-chart" height="130"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="card-title-icon">🛡</span>System Health</div>
+          <span class="badge badge-green">All green</span>
+        </div>
+        <div id="health-checks"><!-- filled by JS --></div>
+      </div>
+    </div>
+
+    <!-- ===== INTAKE PANEL ===== -->
+    <div class="panel" id="panel-intake">
+      <div class="panel-top">
+        <div class="section-title">📋 AI-Assisted Patient Intake</div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span class="card-title-icon">👤</span>New Patient Registration</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" id="intake-name" placeholder="e.g. James Okafor" type="text">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group">
+              <label class="form-label">Date of Birth</label>
+              <input class="form-input" id="intake-dob" type="date">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Gender</label>
+              <select class="form-select" id="intake-gender">
+                <option value="">Select...</option>
+                <option>Male</option><option>Female</option><option>Non-binary</option><option>Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Chief Complaint</label>
+            <input class="form-input" id="intake-complaint" placeholder="e.g. chest pain for 2 days, worsens with exertion">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Medications</label>
+            <textarea class="form-textarea" id="intake-meds" placeholder="List medications and dosages..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Insurance Provider</label>
+            <select class="form-select" id="intake-insurance">
+              <option value="">Select...</option>
+              <option>Aetna</option><option>Blue Cross Blue Shield</option><option>Cigna</option><option>UnitedHealth</option><option>Medicare</option><option>Medicaid</option><option>Self-pay</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="width:100%" onclick="runIntake()">🤖 AI-Assisted Intake</button>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">🤖</span>AI Analysis</div>
+              <span class="badge badge-blue" id="intake-badge">Ready</span>
+            </div>
+            <div id="intake-ai-result" style="font-size:13px;color:var(--fg2);line-height:1.6">
+              <div style="text-align:center;padding:24px 0;color:var(--fg3)">
+                Fill the form and click AI-Assisted Intake to see the AI analysis
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-title-icon">📊</span>Intake Stats</div>
+            </div>
+            <div class="metric-row">
+              <div class="metric-label">Forms completed today</div>
+              <div class="metric-value" style="color:var(--accent)">47</div>
+            </div>
+            <div class="metric-row">
+              <div class="metric-label">AI auto-categorized</div>
+              <div class="metric-value" style="color:var(--green)">89%</div>
+            </div>
+            <div class="metric-row">
+              <div class="metric-label">Avg intake time</div>
+              <div class="metric-value" style="color:var(--teal)">3.2 min</div>
+            </div>
+            <div class="metric-row">
+              <div class="metric-label">Missing info detected</div>
+              <div class="metric-value" style="color:var(--amber)">12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /shell -->
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon">✅</span>
+  <span id="toast-text">Done</span>
+</div>
+
+<!-- PATIENT MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Patient Detail</div>
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+var PATIENTS = [
+  {id:'p1', name:'Eleanor Voss', age:72, chief:'Shortness of breath', acuity:'High', ai:'Cardiology referral', wait:8, avatar:'EV', cls:'av-blue'},
+  {id:'p2', name:'Marcus Webb', age:45, chief:'Knee pain after fall', acuity:'Low', ai:'Ortho screening', wait:14, avatar:'MW', cls:'av-teal'},
+  {id:'p3', name:'Fatima Nour', age:58, chief:'Elevated BP reading', acuity:'Medium', ai:'BP management protocol', wait:5, avatar:'FN', cls:'av-violet'},
+  {id:'p4', name:'James Okafor', age:34, chief:'Persistent cough 3 wk', acuity:'Low', ai:'Respiratory workup', wait:20, avatar:'JO', cls:'av-amber'},
+  {id:'p5', name:'Yuki Tanaka', age:66, chief:'Diabetes follow-up', acuity:'Routine', ai:'DM protocol', wait:11, avatar:'YT', cls:'av-green'},
+  {id:'p6', name:'Carmen Ruiz', age:51, chief:'Chest tightness', acuity:'High', ai:'ECG + troponin order', wait:3, avatar:'CR', cls:'av-blue'},
+  {id:'p7', name:'Liam Foster', age:29, chief:'Allergic reaction', acuity:'Medium', ai:'Allergy protocol', wait:16, avatar:'LF', cls:'av-teal'}
+];
+
+var QUEUE_EVENTS = [
+  {c:'feed-blue', t:'AI triaged Eleanor Voss', label:'High acuity — Cardiology', ts:'2m ago'},
+  {c:'feed-red', t:'ECG ordered for Carmen Ruiz', label:'Auto-ordered', ts:'4m ago'},
+  {c:'feed-green', t:'Yuki Tanaka checked in', label:'Routine DM visit', ts:'7m ago'},
+  {c:'feed-amber', t:'Wait time alert: Marcus Webb', label:'>15 min threshold', ts:'9m ago'},
+  {c:'feed-teal', t:'BP protocol triggered', label:'Fatima Nour', ts:'11m ago'},
+  {c:'feed-violet', t:'Respiratory workup queued', label:'James Okafor', ts:'13m ago'}
+];
+
+var TASKS = [
+  {title:'Coordinate specialist referral — Eleanor Voss', status:'In Progress', agent:'Referral Agent', priority:'High'},
+  {title:'Send lab orders — Carmen Ruiz', status:'Done', agent:'Order Agent', priority:'High'},
+  {title:'Insurance pre-auth — Yuki Tanaka', status:'In Progress', agent:'Auth Agent', priority:'Medium'},
+  {title:'Prescription refill — Fatima Nour', status:'Pending', agent:'Rx Agent', priority:'Medium'},
+  {title:'Appointment follow-up — James Okafor', status:'Pending', agent:'Schedule Agent', priority:'Low'}
+];
+
+var AGENTS = [
+  {icon:'📋', color:'av-blue', name:'Triage Agent', desc:'Acuity scoring & routing', metric:'Calls today', val:'312', lat:'180ms'},
+  {icon:'💊', color:'av-violet', name:'Rx Agent', desc:'Prescription management', metric:'Refills processed', val:'87', lat:'210ms'},
+  {icon:'🔗', color:'av-teal', name:'Referral Agent', desc:'Specialist coordination', metric:'Referrals sent', val:'24', lat:'340ms'},
+  {icon:'📅', color:'av-amber', name:'Schedule Agent', desc:'Appointment orchestration', metric:'Slots filled', val:'118', lat:'160ms'},
+  {icon:'🛡', color:'av-green', name:'Auth Agent', desc:'Insurance pre-authorization', metric:'Auths approved', val:'56', lat:'290ms'},
+  {icon:'📝', color:'av-blue', name:'Notes Agent', desc:'Clinical note generation', metric:'Notes drafted', val:'143', lat:'420ms'}
+];
+
+var TRACES = [
+  {name:'Patient intake parsing', pct:18, dur:'180ms', ok:true},
+  {name:'Chief complaint NLP', pct:22, dur:'220ms', ok:true},
+  {name:'Acuity scoring', pct:14, dur:'140ms', ok:true},
+  {name:'EHR data fetch', pct:35, dur:'350ms', ok:true},
+  {name:'Referral generation', pct:42, dur:'420ms', ok:true},
+  {name:'Insurance verification', pct:38, dur:'380ms', ok:true},
+  {name:'Order placement', pct:28, dur:'280ms', ok:true},
+  {name:'Notification dispatch', pct:12, dur:'120ms', ok:true}
+];
+
+var HEALTH = [
+  {name:'LLM Gateway (GPT-4o)', status:'Healthy', latency:'190ms', uptime:'99.99%'},
+  {name:'Voice Agent Service', status:'Healthy', latency:'85ms', uptime:'99.97%'},
+  {name:'EHR Integration (HL7)', status:'Healthy', latency:'240ms', uptime:'99.95%'},
+  {name:'Insurance API', status:'Degraded', latency:'1.2s', uptime:'99.1%'},
+  {name:'Notification Service', status:'Healthy', latency:'45ms', uptime:'100%'},
+  {name:'Analytics Pipeline', status:'Healthy', latency:'320ms', uptime:'99.9%'}
+];
+
+var VOICE_SCRIPTS = {
+  'Post-visit follow-up': [
+    {role:'ai', text:'Hi, this is Asha, your care assistant from Riverside Clinic. Am I speaking with Maria Santos?'},
+    {role:'pt', text:'Yes, this is Maria. Hi!'},
+    {role:'ai', text:'Hi Maria! I\'m calling to follow up on your visit with Dr. Chen on Monday. How are you feeling since then?'},
+    {role:'pt', text:'A little better, but I\'m still having some chest tightness in the morning.'},
+    {role:'ai', text:'I\'m noting that down. The morning chest tightness could be related to the new medication. Have you been taking the lisinopril at the same time each day?'},
+    {role:'pt', text:'I forgot once or twice this week.'},
+    {role:'ai', text:'That\'s okay — it\'s common early on. I\'ll send a reminder to your phone. I\'m also flagging this for Dr. Chen to review. Is there anything else you\'d like me to relay to your care team?'},
+    {role:'pt', text:'No, I think that\'s it. Thank you so much.'},
+    {role:'ai', text:'Of course! I\'ll make sure Dr. Chen reviews these notes today. Take care, Maria. Goodbye!'}
+  ],
+  'Medication adherence check': [
+    {role:'ai', text:'Hello, this is Asha from your care team. Am I speaking with David Kim?'},
+    {role:'pt', text:'Yes, speaking.'},
+    {role:'ai', text:'Hi David! I\'m checking in on your metformin adherence. Our records show you\'ve been on 500mg twice daily for two weeks. Any side effects?'},
+    {role:'pt', text:'Some nausea after meals, mostly in the mornings.'},
+    {role:'ai', text:'Nausea is common early on and usually improves by week 4. Taking it right at the end of your meal — not before — can help. I\'ll add this to your chart and Dr. Lee will review. Would you like a pharmacist callback?'},
+    {role:'pt', text:'That would be great, thank you.'},
+    {role:'ai', text:'Scheduling that now. You should hear from our pharmacist within 2 hours. Have a great day, David!'}
+  ],
+  'Lab result notification': [
+    {role:'ai', text:'Hi, this is Asha from your clinic. May I speak with Priya Patel?'},
+    {role:'pt', text:'This is Priya.'},
+    {role:'ai', text:'Hi Priya! Your HbA1c results from yesterday are in. Your level is 7.1%, which is an improvement from 7.8% last quarter — great progress!'},
+    {role:'pt', text:'Oh that\'s wonderful! What does that mean for my medications?'},
+    {role:'ai', text:'Dr. Patel will make any medication adjustments at your next visit. I\'m flagging this result as "improved" in your chart. Would you like me to schedule a follow-up appointment?'},
+    {role:'pt', text:'Yes please, in about 3 months.'},
+    {role:'ai', text:'Scheduling that now. You\'ll receive a confirmation text. Keep up the great work, Priya!'}
+  ],
+  'Appointment reminder': [
+    {role:'ai', text:'Hi, this is an automated reminder from your care team for Robert Chen.'},
+    {role:'pt', text:'Yes, this is Robert.'},
+    {role:'ai', text:'Hi Robert! You have an upcoming appointment with Dr. Williams tomorrow at 10:30 AM. Will you be able to make it?'},
+    {role:'pt', text:'Yes, I\'ll be there.'},
+    {role:'ai', text:'Perfect! Please remember to fast for 8 hours beforehand for your blood draw. The clinic is at 450 Medical Center Drive. See you tomorrow!'}
+  ]
+};
+
+var callActive = false;
+var callTimer = null;
+var callSeconds = 0;
+var callTurnIdx = 0;
+var callTurnTimer = null;
+var currentCallType = 'Post-visit follow-up';
+
+function go(id, el) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// CLOCK
+function updateClock() {
+  var now = new Date();
+  var h = now.getHours().toString().padStart(2,'0');
+  var m = now.getMinutes().toString().padStart(2,'0');
+  var s = now.getSeconds().toString().padStart(2,'0');
+  document.getElementById('clock').textContent = h+':'+m+':'+s;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// QUEUE PANEL
+function buildQueue() {
+  var list = document.getElementById('patient-list');
+  list.innerHTML = '';
+  PATIENTS.forEach(function(p) {
+    var aclass = p.acuity === 'High' ? 'badge-red' : p.acuity === 'Medium' ? 'badge-amber' : p.acuity === 'Routine' ? 'badge-green' : 'badge-blue';
+    var row = document.createElement('div');
+    row.className = 'patient-row';
+    row.onclick = function(){ showPatient(p); };
+    row.innerHTML = '<div class="patient-avatar '+p.cls+'">'+p.avatar+'</div>'
+      +'<div class="patient-info"><div class="patient-name">'+p.name+'</div>'
+      +'<div class="patient-meta">Age '+p.age+' · Wait: '+p.wait+'m</div></div>'
+      +'<div class="patient-ai">'+p.ai+'</div>'
+      +'<span class="badge '+aclass+'">'+p.acuity+'</span>';
+    list.appendChild(row);
+  });
+}
+
+function buildQueueFeed() {
+  var feed = document.getElementById('queue-feed');
+  feed.innerHTML = '';
+  QUEUE_EVENTS.forEach(function(e) {
+    var el = document.createElement('div');
+    el.className = 'feed-item';
+    el.innerHTML = '<div class="feed-dot '+e.c+'"></div>'
+      +'<div class="feed-text"><strong>'+e.t+'</strong><br>'+e.label+'</div>'
+      +'<div class="feed-ts">'+e.ts+'</div>';
+    feed.appendChild(el);
+  });
+}
+
+function addPatient() {
+  var names = ['Sandra Lee','Omar Hassan','Beth Nguyen','Carlos Vega','Amy Park'];
+  var complaints = ['Headache x3 days','Back pain','Fatigue and dizziness','Rash on arm','Ankle swelling'];
+  var idx = Math.floor(Math.random()*5);
+  var classes = ['av-blue','av-teal','av-violet','av-amber','av-green'];
+  var newPt = {
+    id:'pn'+Date.now(),
+    name: names[idx],
+    age: 30+Math.floor(Math.random()*50),
+    chief: complaints[idx],
+    acuity: ['High','Medium','Low','Routine'][Math.floor(Math.random()*4)],
+    ai: 'AI triage in progress...',
+    wait: 1+Math.floor(Math.random()*8),
+    avatar: names[idx].split(' ').map(function(n){return n[0]}).join(''),
+    cls: classes[Math.floor(Math.random()*5)]
+  };
+  PATIENTS.unshift(newPt);
+  var cnt = parseInt(document.getElementById('q-count').textContent)+1;
+  document.getElementById('q-count').textContent = cnt;
+  document.getElementById('stat-wait').textContent = cnt;
+  buildQueue();
+  showToast('🤖','AI triage started for '+newPt.name,'teal');
+  setTimeout(function(){
+    newPt.ai = 'Triage complete';
+    var pct = parseInt(document.getElementById('stat-triaged').textContent)+1;
+    document.getElementById('stat-triaged').textContent = pct;
+    buildQueue();
+  }, 2200);
+}
+
+function showPatient(p) {
+  document.getElementById('modal-title').textContent = p.name;
+  document.getElementById('modal-body').innerHTML =
+    '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">'
+    +'<div class="patient-avatar '+p.cls+'" style="width:50px;height:50px;font-size:17px">'+p.avatar+'</div>'
+    +'<div><div style="font-size:17px;font-weight:700">'+p.name+'</div>'
+    +'<div style="color:var(--fg2);font-size:13px">Age '+p.age+'</div></div></div>'
+    +'<div style="background:var(--bg3);border-radius:8px;padding:14px;margin-bottom:14px">'
+    +'<div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fg3);margin-bottom:8px">Chief Complaint</div>'
+    +'<div style="font-size:14px;color:var(--fg)">'+p.chief+'</div></div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">'
+    +'<div style="background:var(--bg3);border-radius:8px;padding:12px"><div style="font-size:11px;color:var(--fg3);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px">Acuity</div>'
+    +'<div style="font-size:15px;font-weight:700;color:var(--fg)">'+p.acuity+'</div></div>'
+    +'<div style="background:var(--bg3);border-radius:8px;padding:12px"><div style="font-size:11px;color:var(--fg3);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px">Wait</div>'
+    +'<div style="font-size:15px;font-weight:700;color:var(--fg)">'+p.wait+' min</div></div></div>'
+    +'<div style="background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:12px;margin-bottom:14px">'
+    +'<div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px">🤖 AI Recommendation</div>'
+    +'<div style="font-size:13px;color:var(--fg)">'+p.ai+'</div></div>'
+    +'<div style="display:flex;gap:8px">'
+    +'<button class="btn btn-primary btn-sm" onclick="assignPatient(\''+p.id+'\',\''+p.name+'\')">Assign to Provider</button>'
+    +'<button class="btn btn-ghost btn-sm" onclick="closeModalBtn()">Close</button></div>';
+  document.getElementById('modal').classList.add('show');
+}
+
+function assignPatient(id, name) {
+  closeModalBtn();
+  showToast('✅', name+' assigned to Dr. Patel');
+  PATIENTS = PATIENTS.filter(function(p){ return p.id !== id; });
+  var cnt = parseInt(document.getElementById('q-count').textContent)-1;
+  document.getElementById('q-count').textContent = cnt;
+  document.getElementById('stat-wait').textContent = cnt;
+  var done = parseInt(document.getElementById('stat-done').textContent)+1;
+  document.getElementById('stat-done').textContent = done;
+  buildQueue();
+}
+
+// CARE PANEL
+function buildCare() {
+  var board = document.getElementById('task-board');
+  board.innerHTML = '';
+  TASKS.forEach(function(t) {
+    var sc = t.status === 'Done' ? 'badge-green' : t.status === 'In Progress' ? 'badge-blue' : 'badge-amber';
+    var pc = t.priority === 'High' ? 'badge-red' : t.priority === 'Medium' ? 'badge-teal' : 'badge-blue';
+    var el = document.createElement('div');
+    el.className = 'patient-row';
+    el.style.cursor = 'default';
+    el.innerHTML = '<div class="patient-info"><div class="patient-name">'+t.title+'</div>'
+      +'<div class="patient-meta">'+t.agent+'</div></div>'
+      +'<span class="badge '+pc+'">'+t.priority+'</span>'
+      +'<span class="badge '+sc+'">'+t.status+'</span>';
+    board.appendChild(el);
+  });
+
+  var flow = document.getElementById('agent-flow');
+  flow.innerHTML = '';
+  AGENTS.slice(0,4).forEach(function(a) {
+    var el = document.createElement('div');
+    el.className = 'agent-card';
+    el.innerHTML = '<div class="agent-header">'
+      +'<div class="agent-icon '+a.color+'">'+a.icon+'</div>'
+      +'<div><div class="agent-name">'+a.name+'</div><div class="agent-desc">'+a.desc+'</div></div>'
+      +'<div class="dot-live" style="margin-left:auto"></div></div>'
+      +'<div class="prog-bar"><div class="prog-fill prog-blue" style="width:'+Math.floor(60+Math.random()*35)+'%"></div></div>'
+      +'<div class="agent-metric"><span class="agent-metric-label">'+a.metric+'</span><span class="agent-metric-val">'+a.val+'</span></div>';
+    flow.appendChild(el);
+  });
+}
+
+function addTask() {
+  var titles = ['Order allergy panel — New patient','Coordinate MRI — Liam Foster','Auth request — Sandra Lee','Note draft — Carmen Ruiz'];
+  var t = {
+    title: titles[Math.floor(Math.random()*titles.length)],
+    status: 'Pending',
+    agent: 'AI Coordinator',
+    priority: 'Medium'
+  };
+  TASKS.unshift(t);
+  buildCare();
+  showToast('🤖','New task queued for AI coordination','teal');
+  setTimeout(function(){
+    TASKS[0].status = 'In Progress';
+    buildCare();
+  }, 1800);
+}
+
+// AGENTS (Clinical)
+function buildAgents() {
+  var grid = document.getElementById('agents-grid');
+  grid.innerHTML = '';
+  AGENTS.forEach(function(a) {
+    var el = document.createElement('div');
+    el.style.cssText = 'display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg3);border-radius:8px';
+    el.innerHTML = '<div class="agent-icon '+a.color+'" style="width:28px;height:28px;border-radius:6px;font-size:13px">'+a.icon+'</div>'
+      +'<div style="flex:1"><div style="font-size:12px;font-weight:600">'+a.name+'</div>'
+      +'<div style="font-size:11px;color:var(--fg3)">'+a.lat+' avg · '+a.val+' today</div></div>'
+      +'<div class="dot-live"></div>';
+    grid.appendChild(el);
+  });
+}
+
+function buildClinicalFeed() {
+  var feed = document.getElementById('clinical-feed');
+  feed.innerHTML = '';
+  var items = [
+    {c:'feed-violet',t:'DDx generated',sub:'68yo chest pain',ts:'1m ago'},
+    {c:'feed-blue',t:'Drug interaction check',sub:'Warfarin + NSAIDs — flagged',ts:'3m ago'},
+    {c:'feed-teal',t:'Lab interpretation',sub:'CBC panel analysis',ts:'5m ago'},
+    {c:'feed-green',t:'Dosage adjustment',sub:'eGFR-based metformin',ts:'7m ago'},
+    {c:'feed-amber',t:'Allergy cross-check',sub:'Penicillin class',ts:'9m ago'}
+  ];
+  items.forEach(function(e) {
+    var el = document.createElement('div');
+    el.className = 'feed-item';
+    el.innerHTML = '<div class="feed-dot '+e.c+'"></div>'
+      +'<div class="feed-text"><strong>'+e.t+'</strong><br>'+e.sub+'</div>'
+      +'<div class="feed-ts">'+e.ts+'</div>';
+    feed.appendChild(el);
+  });
+}
+
+// CLINICAL QUERY
+var CLINICAL_RESPONSES = {
+  'default': 'Based on the available clinical guidelines and patient context, here is the AI-generated assessment:\n\n<strong>Key Considerations:</strong> Please review the patient\'s full medication list, renal function, and contraindications per current clinical protocol.\n\n<strong>Recommendation:</strong> Consider specialist review and confirm with the attending physician before proceeding. This response is AI-generated and should not replace clinical judgment.',
+  'metformin': '<strong>Metformin &amp; CKD (eGFR 42 mL/min/1.73m²):</strong>\n\neGFR 42 falls in <strong>Stage 3b CKD</strong>. Per ADA/KDIGO 2023 guidelines:\n\n• Metformin is <strong>acceptable</strong> at eGFR 30–45 (use with caution)\n• Continue current dose but monitor renal function every 3–6 months\n• If eGFR drops below 30: discontinue metformin\n• Counsel patient to hold during contrast procedures or acute illness\n\n<strong>Source:</strong> ADA Standards of Care 2024, Section 11 · Confidence: 0.97',
+  'dyspnea': '<strong>DDx: New-Onset Dyspnea in 68yo with HTN + DM</strong>\n\n<strong>High priority:</strong>\n1. Heart failure with reduced/preserved EF (HFrEF/HFpEF)\n2. Pulmonary embolism (PE)\n3. Acute coronary syndrome\n\n<strong>Moderate priority:</strong>\n4. COPD / Asthma exacerbation\n5. Pneumonia\n6. Anemia (common in DM + CKD)\n\n<strong>Recommended workup:</strong> BNP, D-dimer, CBC, CXR, ECG, O₂ saturation\n\n<strong>Source:</strong> UpToDate, AHA HF Guidelines 2022 · Confidence: 0.92',
+  'lisinopril': '<strong>Lisinopril Dose Adjustment — Rising Creatinine</strong>\n\nCreatinine 1.1 → 1.6 over 3 months (45% rise):\n\n• A creatinine rise <30% is expected with ACE inhibitors — this exceeds that threshold\n• <strong>Action:</strong> Check potassium and eGFR urgently\n• If K⁺ > 5.5 mEq/L or eGFR < 30: hold lisinopril, contact provider\n• Rule out bilateral renal artery stenosis if creatinine rise is abrupt\n• Consider reducing dose by 50% and re-checking in 1–2 weeks\n\n<strong>Source:</strong> JNC 8, ACC/AHA BP Guidelines · Confidence: 0.95'
+};
+
+function setClinicalQ(q) {
+  document.getElementById('clinical-input').value = q;
+}
+
+function runClinicalQuery() {
+  var q = document.getElementById('clinical-input').value.trim();
+  if (!q) { showToast('⚠️','Please enter a clinical question','amber'); return; }
+  var result = document.getElementById('clinical-result');
+  result.innerHTML = '<span style="color:var(--fg3)">Analyzing</span><span class="typing-cursor"></span>';
+  document.getElementById('clinical-latency').textContent = '';
+  document.getElementById('clinical-tokens').textContent = '';
+  document.getElementById('clinical-source').textContent = '';
+  var start = Date.now();
+  var key = 'default';
+  if (q.toLowerCase().indexOf('metformin') > -1) key = 'metformin';
+  else if (q.toLowerCase().indexOf('dyspnea') > -1 || q.toLowerCase().indexOf('differential') > -1) key = 'dyspnea';
+  else if (q.toLowerCase().indexOf('lisinopril') > -1) key = 'lisinopril';
+  var resp = CLINICAL_RESPONSES[key];
+  var delay = 900 + Math.floor(Math.random()*500);
+  setTimeout(function(){
+    var latency = Date.now()-start;
+    var lines = resp.split('\n');
+    var idx = 0;
+    result.innerHTML = '';
+    var pre = document.createElement('div');
+    pre.style.cssText = 'white-space:pre-line;line-height:1.65';
+    result.appendChild(pre);
+    function addLine() {
+      if (idx < lines.length) {
+        pre.innerHTML += (idx > 0 ? '\n' : '') + lines[idx];
+        idx++;
+        setTimeout(addLine, 60);
+      } else {
+        document.getElementById('clinical-latency').textContent = 'Latency: '+latency+'ms';
+        document.getElementById('clinical-tokens').textContent = '· Tokens: '+(180+Math.floor(Math.random()*80));
+        document.getElementById('clinical-source').textContent = '· Model: GPT-4o + RAG';
+      }
+    }
+    addLine();
+  }, delay);
+}
+
+// VOICE CALL
+function toggleCall() {
+  if (callActive) { endCall(); } else { startCall(); }
+}
+
+function startCall() {
+  callActive = true;
+  callSeconds = 0;
+  callTurnIdx = 0;
+  var btn = document.getElementById('call-btn');
+  btn.textContent = '■ End Call';
+  btn.className = 'btn btn-sm';
+  btn.style.background = 'var(--red)';
+  btn.style.color = '#fff';
+  document.getElementById('call-waveform').style.opacity = '1';
+  document.getElementById('call-state-txt').textContent = 'Connected — '+currentCallType;
+  document.getElementById('call-sentiment').textContent = 'Positive';
+  document.getElementById('call-transcript').innerHTML = '';
+  callTimer = setInterval(function(){
+    callSeconds++;
+    var m = Math.floor(callSeconds/60);
+    var s = callSeconds%60;
+    document.getElementById('call-dur-val').textContent = m+':'+(s<10?'0':'')+s;
+  }, 1000);
+  playNextTurn();
+}
+
+function playNextTurn() {
+  var selVal = document.getElementById('call-type-sel').value;
+  currentCallType = selVal;
+  var script = VOICE_SCRIPTS[currentCallType] || VOICE_SCRIPTS['Post-visit follow-up'];
+  if (!callActive || callTurnIdx >= script.length) { endCall(); return; }
+  var turn = script[callTurnIdx];
+  callTurnIdx++;
+  var tc = document.getElementById('call-transcript');
+  var div = document.createElement('div');
+  div.className = 'call-turn';
+  var labelClass = turn.role === 'ai' ? 'call-turn-ai' : 'call-turn-pt';
+  var labelName = turn.role === 'ai' ? '🤖 Asha AI' : '👤 Patient';
+  div.innerHTML = '<div class="call-turn-label '+labelClass+'">'+labelName+'</div>'
+    +'<div class="call-turn-text">'+turn.text+'</div>';
+  tc.appendChild(div);
+  tc.scrollTop = tc.scrollHeight;
+  var delay = turn.role === 'ai' ? 2200 : 1800;
+  if (callTurnIdx < script.length) {
+    callTurnTimer = setTimeout(playNextTurn, delay);
+  } else {
+    callTurnTimer = setTimeout(endCall, 2000);
+  }
+}
+
+function endCall() {
+  callActive = false;
+  clearInterval(callTimer);
+  clearTimeout(callTurnTimer);
+  var btn = document.getElementById('call-btn');
+  btn.textContent = '▶ Start Call';
+  btn.className = 'btn btn-teal btn-sm';
+  btn.style.background = '';
+  btn.style.color = '';
+  document.getElementById('call-waveform').style.opacity = '0.3';
+  document.getElementById('call-state-txt').textContent = 'Call completed — Summary drafted';
+  addVoiceFeedItem();
+  showToast('✅','Call completed — notes sent to chart','teal');
+}
+
+function resetCall() {
+  endCall();
+  callSeconds = 0;
+  document.getElementById('call-dur-val').textContent = '0:00';
+  document.getElementById('call-state-txt').textContent = 'Outbound — '+document.getElementById('call-type-sel').value;
+  document.getElementById('call-transcript').innerHTML = '<div style="text-align:center;color:var(--fg3);padding:20px 0;font-size:12px">Start the call to see live transcript</div>';
+  document.getElementById('call-sentiment').textContent = '—';
+}
+
+function pickCall(name, type) {
+  endCall();
+  document.getElementById('call-patient-name').textContent = name;
+  document.getElementById('call-type-sel').value = type;
+  currentCallType = type;
+  document.getElementById('call-state-txt').textContent = 'Outbound — '+type;
+  document.getElementById('call-transcript').innerHTML = '<div style="text-align:center;color:var(--fg3);padding:20px 0;font-size:12px">Start the call to see live transcript</div>';
+}
+
+var VOICE_FEED_ITEMS = [
+  {c:'feed-teal',t:'Call completed — Robert Chen',sub:'Appointment confirmed · 1:42',ts:'8m ago'},
+  {c:'feed-green',t:'Notes drafted — auto-sent',sub:'Post-visit: M. Santos',ts:'15m ago'},
+  {c:'feed-blue',t:'Reminder dispatched',sub:'D. Kim — med adherence',ts:'22m ago'},
+  {c:'feed-violet',t:'Lab results notified',sub:'P. Patel — HbA1c 7.1%',ts:'31m ago'}
+];
+function buildVoiceFeed() {
+  var feed = document.getElementById('voice-feed');
+  feed.innerHTML = '';
+  VOICE_FEED_ITEMS.forEach(function(e) {
+    var el = document.createElement('div');
+    el.className = 'feed-item';
+    el.innerHTML = '<div class="feed-dot '+e.c+'"></div>'
+      +'<div class="feed-text"><strong>'+e.t+'</strong><br>'+e.sub+'</div>'
+      +'<div class="feed-ts">'+e.ts+'</div>';
+    feed.appendChild(el);
+  });
+}
+function addVoiceFeedItem() {
+  var name = document.getElementById('call-patient-name').textContent;
+  VOICE_FEED_ITEMS.unshift({c:'feed-teal',t:'Call completed — '+name,sub:currentCallType+' · '+document.getElementById('call-dur-val').textContent,ts:'just now'});
+  buildVoiceFeed();
+}
+
+// RELIABILITY
+function buildReliability() {
+  var list = document.getElementById('trace-list');
+  list.innerHTML = '';
+  TRACES.forEach(function(t) {
+    var el = document.createElement('div');
+    el.className = 'trace-row';
+    var clr = t.pct < 25 ? '#4ade80' : t.pct < 35 ? '#5b8ef8' : '#a78bfa';
+    el.innerHTML = '<div class="trace-name">'+t.name+'</div>'
+      +'<div class="trace-bar-wrap"><div class="trace-bar-bg"><div class="trace-bar-fill" style="width:'+t.pct+'%;background:'+clr+'"></div></div></div>'
+      +'<div class="trace-dur">'+t.dur+'</div>'
+      +'<span class="trace-status '+(t.ok?'trace-ok':'trace-warn')+'">'+(t.ok?'OK':'SLOW')+'</span>';
+    list.appendChild(el);
+  });
+
+  var hc = document.getElementById('health-checks');
+  hc.innerHTML = '';
+  HEALTH.forEach(function(h) {
+    var sc = h.status === 'Healthy' ? 'badge-green' : 'badge-amber';
+    var el = document.createElement('div');
+    el.className = 'metric-row';
+    el.innerHTML = '<div class="metric-label">'+h.name+'</div>'
+      +'<span class="badge '+sc+'">'+h.status+'</span>'
+      +'<div class="metric-value" style="color:var(--fg3);font-size:11px">'+h.latency+'</div>'
+      +'<div class="metric-value" style="color:var(--green)">'+h.uptime+'</div>';
+    hc.appendChild(el);
+  });
+}
+
+// INTAKE
+function runIntake() {
+  var name = document.getElementById('intake-name').value.trim();
+  var complaint = document.getElementById('intake-complaint').value.trim();
+  var meds = document.getElementById('intake-meds').value.trim();
+  var insurance = document.getElementById('intake-insurance').value;
+  var gender = document.getElementById('intake-gender').value;
+  if (!name && !complaint) { showToast('⚠️','Please fill in at least name and chief complaint','amber'); return; }
+  var badge = document.getElementById('intake-badge');
+  badge.textContent = 'Analyzing...';
+  badge.className = 'badge badge-amber';
+  var result = document.getElementById('intake-ai-result');
+  result.innerHTML = '<div style="color:var(--fg3)">Processing with AI<span class="typing-cursor"></span></div>';
+  var acuity = complaint.toLowerCase().indexOf('chest') > -1 || complaint.toLowerCase().indexOf('breath') > -1 ? 'High' : complaint.toLowerCase().indexOf('pain') > -1 ? 'Medium' : 'Low';
+  var dept = complaint.toLowerCase().indexOf('chest') > -1 ? 'Cardiology' : complaint.toLowerCase().indexOf('knee') > -1 || complaint.toLowerCase().indexOf('pain') > -1 ? 'Orthopedics' : complaint.toLowerCase().indexOf('cough') > -1 ? 'Pulmonology' : 'General Medicine';
+  setTimeout(function(){
+    badge.textContent = 'Complete';
+    badge.className = 'badge badge-green';
+    var medAlert = meds && (meds.toLowerCase().indexOf('warfarin') > -1 || meds.toLowerCase().indexOf('aspirin') > -1) ? '<div style="background:var(--red-soft);border:1px solid var(--red);border-radius:7px;padding:10px 12px;margin-top:10px"><div style="font-size:11px;font-weight:700;color:var(--red);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px">⚠️ Drug Flag</div><div style="font-size:12px;color:var(--fg2)">Anticoagulant detected — flag for physician review before any procedures</div></div>' : '';
+    result.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px">'
+      +'<div style="background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:12px">'
+      +'<div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px">🤖 AI Triage Summary</div>'
+      +'<div style="font-size:13px;font-weight:600;color:var(--fg);margin-bottom:4px">'+(name||'Patient')+' · '+(gender||'Unknown gender')+'</div>'
+      +'<div style="font-size:12px;color:var(--fg2)">Chief complaint: '+(complaint||'Not specified')+'</div></div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'
+      +'<div style="background:var(--bg3);border-radius:7px;padding:10px"><div style="font-size:11px;color:var(--fg3);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px">Acuity</div>'
+      +'<div style="font-size:14px;font-weight:700;color:'+(acuity==='High'?'var(--red)':acuity==='Medium'?'var(--amber)':'var(--green)')+'">'+acuity+'</div></div>'
+      +'<div style="background:var(--bg3);border-radius:7px;padding:10px"><div style="font-size:11px;color:var(--fg3);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px">Route To</div>'
+      +'<div style="font-size:14px;font-weight:700;color:var(--accent)">'+dept+'</div></div></div>'
+      +'<div style="background:var(--teal-soft);border:1px solid var(--teal);border-radius:7px;padding:10px">'
+      +'<div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px">AI Recommendations</div>'
+      +'<div style="font-size:12px;color:var(--fg2)">• Schedule with '+dept+' within '+(acuity==='High'?'2 hours':'24–48 hours')+'<br>• Obtain vital signs, O₂ saturation<br>• '+(acuity==='High'?'Expedite ECG and labs':'Routine pre-visit labs')+'<br>• Insurance: '+(insurance||'Verify before visit')+'</div></div>'
+      + medAlert
+      +'<div style="display:flex;gap:8px"><button class="btn btn-primary btn-sm" onclick="confirmIntake()">✅ Confirm &amp; Add to Queue</button><button class="btn btn-ghost btn-sm" onclick="clearIntake()">Clear</button></div>'
+      +'</div>';
+  }, 1400);
+}
+
+function confirmIntake() {
+  var name = document.getElementById('intake-name').value.trim() || 'New Patient';
+  PATIENTS.unshift({
+    id:'pi'+Date.now(),
+    name: name,
+    age: 0,
+    chief: document.getElementById('intake-complaint').value.trim() || 'Unknown',
+    acuity: 'Medium',
+    ai: 'Intake complete',
+    wait: 1,
+    avatar: name.split(' ').map(function(n){return n[0]}).join('').substring(0,2),
+    cls: 'av-blue'
+  });
+  buildQueue();
+  showToast('✅', name+' added to queue');
+  clearIntake();
+}
+
+function clearIntake() {
+  document.getElementById('intake-name').value = '';
+  document.getElementById('intake-complaint').value = '';
+  document.getElementById('intake-meds').value = '';
+  document.getElementById('intake-insurance').value = '';
+  document.getElementById('intake-gender').value = '';
+  document.getElementById('intake-badge').textContent = 'Ready';
+  document.getElementById('intake-badge').className = 'badge badge-blue';
+  document.getElementById('intake-ai-result').innerHTML = '<div style="text-align:center;padding:24px 0;color:var(--fg3)">Fill the form and click AI-Assisted Intake to see the AI analysis</div>';
+}
+
+// CHARTS
+function drawActivityChart() {
+  var canvas = document.getElementById('activity-chart');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.offsetWidth || 600;
+  canvas.width = w;
+  canvas.height = 90;
+  var pts = [];
+  for (var i = 0; i < 60; i++) {
+    pts.push(10 + Math.floor(Math.random()*80));
+  }
+  var cs = getComputedStyle(document.documentElement);
+  var accent = cs.getPropertyValue('--accent').trim() || '#5b8ef8';
+  ctx.clearRect(0,0,w,90);
+  ctx.beginPath();
+  for (var i2 = 0; i2 < pts.length; i2++) {
+    var x = (i2/(pts.length-1))*w;
+    var y = 90-(pts[i2]/100)*80;
+    if (i2 === 0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.strokeStyle = accent;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.lineTo(w,90); ctx.lineTo(0,90); ctx.closePath();
+  ctx.fillStyle = accent.replace(')',', 0.1)').replace('rgb','rgba').replace('#5b8ef8','rgba(91,142,248,0.1)');
+  ctx.fill();
+}
+
+function drawLatencyChart() {
+  var canvas = document.getElementById('latency-chart');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.offsetWidth || 400;
+  canvas.width = w;
+  canvas.height = 130;
+  var bars = [];
+  for (var i = 0; i < 20; i++) {
+    bars.push(5 + Math.floor(Math.random()*90));
+  }
+  var cs = getComputedStyle(document.documentElement);
+  var accent = cs.getPropertyValue('--accent').trim() || '#5b8ef8';
+  ctx.clearRect(0,0,w,130);
+  var bw = w/bars.length - 2;
+  for (var i3 = 0; i3 < bars.length; i3++) {
+    var bh = (bars[i3]/100)*110;
+    ctx.fillStyle = accent+'44';
+    ctx.fillRect(i3*(bw+2), 130-bh, bw, bh);
+  }
+}
+
+// FLICKER METRICS
+function flickerMetrics() {
+  var p50 = 190 + Math.floor(Math.random()*50);
+  var p99 = 820 + Math.floor(Math.random()*120);
+  var el50 = document.getElementById('p50-val');
+  var el99 = document.getElementById('p99-val');
+  if (el50) el50.innerHTML = p50+'<span style="font-size:16px">ms</span>';
+  if (el99) el99.innerHTML = p99+'<span style="font-size:16px">ms</span>';
+}
+
+// TOAST
+function showToast(icon, text, color) {
+  var t = document.getElementById('toast');
+  document.getElementById('toast-icon').textContent = icon;
+  document.getElementById('toast-text').textContent = text;
+  t.style.borderColor = color === 'teal' ? 'var(--teal)' : color === 'amber' ? 'var(--amber)' : 'var(--border)';
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+// MODAL
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+// INIT
+buildQueue();
+buildQueueFeed();
+buildCare();
+buildAgents();
+buildClinicalFeed();
+buildReliability();
+buildVoiceFeed();
+
+setTimeout(drawActivityChart, 100);
+setTimeout(drawLatencyChart, 100);
+
+setInterval(function(){
+  flickerMetrics();
+  if (Math.random() > 0.65) {
+    var newEvents = [
+      {c:'feed-blue',t:'Triage completed',label:'Auto-routed to specialist',ts:'just now'},
+      {c:'feed-green',t:'Patient discharged',label:'Follow-up scheduled',ts:'just now'},
+      {c:'feed-teal',t:'Notes auto-drafted',label:'AI clinical notes ready',ts:'just now'},
+      {c:'feed-violet',t:'Medication check',label:'No interactions found',ts:'just now'},
+      {c:'feed-amber',t:'Wait alert resolved',label:'Patient seen by provider',ts:'just now'}
+    ];
+    var ev = newEvents[Math.floor(Math.random()*newEvents.length)];
+    QUEUE_EVENTS.unshift(ev);
+    QUEUE_EVENTS = QUEUE_EVENTS.slice(0,8);
+    buildQueueFeed();
+  }
+}, 4000);
+
+setInterval(function(){
+  drawActivityChart();
+  drawLatencyChart();
+}, 7000);
+</script>
+
+</body></html>
